@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
         feedbackDiv.style.display = 'block';
 
         if (isValid) {
-            // Success message logic and styling
+            // Success path: uses only Tailwind classes for styling
             feedbackDiv.textContent = 'Registration successful! 🎉';
             
-            // Apply success Tailwind classes
+            // Remove error classes, add success classes (text-green-700, bg-green-100, border-green-300)
             feedbackDiv.classList.remove('text-red-700', 'bg-red-100', 'border-red-300', 'border');
             feedbackDiv.classList.add('text-green-700', 'bg-green-100', 'border', 'border-green-300');
             
@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
             form.reset();
 
         } else {
-            // Error messages logic and styling
+            // Error path: uses only Tailwind classes for styling
             const errorHtml = messages.join('<br>');
             feedbackDiv.innerHTML = errorHtml;
 
-            // Apply error Tailwind classes
+            // Remove success classes, add error classes (text-red-700, bg-red-100, border-red-300)
             feedbackDiv.classList.remove('text-green-700', 'bg-green-100', 'border-green-300', 'border');
             feedbackDiv.classList.add('text-red-700', 'bg-red-100', 'border', 'border-red-300');
         }
