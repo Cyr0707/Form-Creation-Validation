@@ -1,13 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Setup and Initial Code Structure
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the form and feedback element
     const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
 
-    // 2. Form Submission and Event Prevention
-    form.addEventListener('submit', (event) => {
+    // Add submit event listener to the form, using the function keyword for the callback
+    form.addEventListener('submit', function (event) {
         event.preventDefault(); // Crucial: Prevent default form submission
 
-        // 3. Input Retrieval and Trimming
+        // Retrieve and trim input values
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
@@ -16,30 +16,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // 4. Validation Logic
+        // Initialize validation variables
         let isValid = true;
         const messages = [];
 
-        // Username Validation: Check if length is less than 3
+        // --- Validation Logic ---
+
+        // Username Validation: Must be at least 3 characters
         if (username.length < 3) {
             isValid = false;
             messages.push('Username must be at least 3 characters long.');
         }
 
-        // Email Validation: Check if email includes both '@' and '.'
-        // Note: This is a basic check. For real-world apps, a more robust RegExp would be used.
+        // Email Validation: Must contain "@" and "."
         if (!email.includes('@') || !email.includes('.')) {
             isValid = false;
             messages.push('Please enter a valid email address (must contain "@" and ".").');
         }
 
-        // Password Validation: Ensure length is at least 8
+        // Password Validation: Must be at least 8 characters
         if (password.length < 8) {
             isValid = false;
             messages.push('Password must be at least 8 characters long.');
         }
 
-        // 5. Displaying Feedback
+        // --- Displaying Feedback ---
+
         // Make the feedback area visible
         feedbackDiv.style.display = 'block';
 
@@ -47,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Success message logic and styling
             feedbackDiv.textContent = 'Registration successful! 🎉';
             
-            // Remove error classes, add success classes
-            feedbackDiv.classList.remove('text-red-700', 'bg-red-100', 'border-red-300');
+            // Apply success Tailwind classes
+            feedbackDiv.classList.remove('text-red-700', 'bg-red-100', 'border-red-300', 'border');
             feedbackDiv.classList.add('text-green-700', 'bg-green-100', 'border', 'border-green-300');
             
             // Clear the form after successful registration
@@ -59,9 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const errorHtml = messages.join('<br>');
             feedbackDiv.innerHTML = errorHtml;
 
-            // Remove success classes, add error classes
-            feedbackDiv.classList.remove('text-green-700', 'bg-green-100', 'border-green-300');
+            // Apply error Tailwind classes
+            feedbackDiv.classList.remove('text-green-700', 'bg-green-100', 'border-green-300', 'border');
             feedbackDiv.classList.add('text-red-700', 'bg-red-100', 'border', 'border-red-300');
         }
     });
 });
+```eof
