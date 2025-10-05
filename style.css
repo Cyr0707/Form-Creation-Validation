@@ -1,0 +1,29 @@
+/* Custom styles for Inter font and general body/container centering */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    /* Apply Inter font */
+    font-family: 'Inter', sans-serif;
+    /* Center the content vertically and horizontally */
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Styling for the feedback div (initially hidden, then styled by JS) */
+#form-feedback {
+    /* This style is primarily controlled by JavaScript, but ensures smooth transitions */
+    display: none;
+    transition: all 0.3s ease;
+}
+
+/* Ensure inputs take full width responsively (overrides some Tailwind defaults) */
+input[type="text"], 
+input[type="email"], 
+input[type="password"] {
+    width: 100%;
+}
+```eof
