@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
 
-    // Add submit event listener to the form, using the function keyword for the callback
+    // Add submit event listener to the form
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Crucial: Prevent default form submission
+        event.preventDefault(); // Prevent default form submission
 
         // Retrieve and trim input values
         const usernameInput = document.getElementById('username');
@@ -42,29 +42,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // --- Displaying Feedback ---
 
-        // Make the feedback area visible
+        // 1. Make feedbackDiv visible
         feedbackDiv.style.display = 'block';
+        
+        // Reset any border classes that might conflict with direct styling
+        feedbackDiv.classList.remove('border-red-300', 'border-green-300', 'border');
 
         if (isValid) {
-            // Success path: uses only Tailwind classes for styling
-            feedbackDiv.textContent = 'Registration successful! 🎉';
-            
-            // Remove error classes, add success classes (text-green-700, bg-green-100, border-green-300)
-            feedbackDiv.classList.remove('text-red-700', 'bg-red-100', 'border-red-300', 'border');
-            feedbackDiv.classList.add('text-green-700', 'bg-green-100', 'border', 'border-green-300');
+            // Success path: set text and color properties directly
+            feedbackDiv.textContent = 'Registration successful!';
+            feedbackDiv.style.color = '#28a745'; // Green text color
+            feedbackDiv.style.backgroundColor = '#d4edda'; // Light green background (for visibility)
             
             // Clear the form after successful registration
             form.reset();
 
         } else {
-            // Error path: uses only Tailwind classes for styling
+            // Error path: join messages and set text and color properties directly
             const errorHtml = messages.join('<br>');
             feedbackDiv.innerHTML = errorHtml;
-
-            // Remove success classes, add error classes (text-red-700, bg-red-100, border-red-300)
-            feedbackDiv.classList.remove('text-green-700', 'bg-green-100', 'border-green-300', 'border');
-            feedbackDiv.classList.add('text-red-700', 'bg-red-100', 'border', 'border-red-300');
+            feedbackDiv.style.color = '#dc3545'; // Red text color
+            feedbackDiv.style.backgroundColor = '#f8d7da'; // Light red background (for visibility)
         }
     });
 });
-```eof
